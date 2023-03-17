@@ -31,9 +31,6 @@ class ViewController: UIViewController {
         let collision = UICollisionBehavior(items: [squareView])
         collision.translatesReferenceBoundsIntoBoundary = true
         animator.addBehavior(collision)
-       // animator.addBehavior(speed)
         animator.addBehavior(snapping)
     }
-    
-    
 }
