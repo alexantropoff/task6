@@ -11,7 +11,6 @@ class ViewController: UIViewController {
     
     let squareView = UIView()
     var animator: UIDynamicAnimator!
-    var snapping: UISnapBehavior!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +26,12 @@ class ViewController: UIViewController {
         
         let touchPoint = touch.location(in: view)
         animator.removeAllBehaviors()
-        snapping = UISnapBehavior(item: squareView, snapTo: touchPoint)
+        let snapping = UISnapBehavior(item: squareView, snapTo: touchPoint)
+        snapping.damping = 0.8
+        let collision = UICollisionBehavior(items: [squareView])
+        collision.translatesReferenceBoundsIntoBoundary = true
+        animator.addBehavior(collision)
+       // animator.addBehavior(speed)
         animator.addBehavior(snapping)
     }
     
